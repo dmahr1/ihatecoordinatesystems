@@ -75,11 +75,11 @@
                 happen when
                 importing from Excel and empty rows are not trimmed off.
             </p>
+            <img src="null_island.png" width="100%">
             <p>
                 <span class="bold">Solution:</span> Remove the data points from your dataset whose <span
                     class="part2">coordinates</span> are null.
             </p>
-            <p style="background-color: red;">[Map showing location of null island with graticule]</p>
         </div>
 
         <div id="incorrectly-gcs">
@@ -102,7 +102,6 @@
                 the <span class="part3">coordinate system</span> but not the <span class="part2">coordinates</span>,
                 from the GCS to the <a href="#correct-crs">correct coordinate system</a>.
             </p>
-            <p style="background-color: red;">[Map showing dataset bigger than Earth]</p>
         </div>
 
         <div id="wrong-crs">
@@ -151,9 +150,6 @@
                     <a href="#redefine">redefining</a> to one of the neighboring zones. For example, if UTM Zone 19N is
                     wrong, try UTM Zone 18N.
                 </li>
-                <li style="background-color: red;">
-                    [TRY USING REVERSE LOOKUP SCRIPT]
-                </li>
                 <li>
                     If the <span class="part1">attributes</span> suggest the dataset is in the USA, then there might a
                     problem converting to/from Freedom Units. Try multiplying/dividing a data point's <span
@@ -185,7 +181,7 @@
                     href="#redefine">redefine the coordinate system</a> i.e. change the <span class="part3">coordinate
                     system</span> but not the <span class="part2">coordinates</span>.
             </p>
-            <p style="background-color: red;">[Map showing datum-related offset in area with dense roads]</p>
+            <img src="wrong-gcs.png" width="100%">
             <p class="solutions"><span class="bold">Solutions:</span></p>
             <ul class="solutions">
                 <li>Try redefining to the WGS84 GCS.</li>

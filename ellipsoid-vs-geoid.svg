@@ -1,27 +1,23 @@
 <svg width="500" height="180" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
  <defs>
   <linearGradient id="linearGradient10989">
-   <stop stop-color="#3788ff" offset="0" id="stop10991"/>
-   <stop stop-color="#86b7ff" offset="1" id="stop10993"/>
+   <stop id="stop10991" offset="0" stop-color="#3788ff"/>
+   <stop id="stop10993" offset="1" stop-color="#86b7ff"/>
   </linearGradient>
-  <linearGradient id="linearGradient9211">
-   <stop stop-color="#c87137" offset="0" id="stop9213"/>
-   <stop stop-color="#d8986f" offset="1" id="stop9215"/>
-  </linearGradient>
-  <linearGradient xlink:href="#linearGradient9211" id="linearGradient9217" y2="0.04946" x2="0.42914" y1="1.00289" x1="0.42914"/>
-  <linearGradient xlink:href="#linearGradient10989" id="linearGradient10995" y2="-0.00681" x2="0.43574" y1="0.96457" x1="0.43898"/>
+  <linearGradient x1="0.43898" y1="0.96457" x2="0.43574" y2="-0.00681" id="linearGradient10995" xlink:href="#linearGradient10989"/>
  </defs>
  <g>
   <title>background</title>
-  <rect fill="none" id="canvas_background" height="182" width="502" y="-1" x="-1"/>
+  <rect x="-1" y="-1" width="502" height="182" id="canvas_background" fill="none"/>
  </g>
  <g>
   <title>Layer 1</title>
-  <path fill="url(#linearGradient10995)" fill-rule="evenodd" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="4" stroke-dashoffset="0" id="path2765" d="m-128.35669,118.74255c41.8998,6.02946 90.5883,2.93795 133.36829,-0.91429c89.2434,-8.03616 169.15547,-24.63224 263.30106,-43.45619c34.85543,-6.96917 70.79094,-15.31833 105.69248,-12.78061c24.46367,1.77878 51.59884,12.02761 72.8686,23.76793c46.22367,25.51418 160.08876,47.843 160.08876,47.843l4.93329,67.02678l-741.88525,7.75104l1.63277,-89.23766z"/>
-  <path fill="url(#linearGradient9217)" fill-rule="nonzero" stroke="#000000" stroke-width="0" marker-start="none" marker-mid="none" marker-end="none" stroke-miterlimit="4" stroke-dashoffset="0" id="path2785" d="m-139.95509,196.90728l2.21459,-93.01248c0,0 32.11145,3.32187 48.72082,22.14583c16.60937,18.82395 34.32603,12.1802 34.32603,12.1802c0,0 16.60937,-4.42916 19.93125,3.32188c3.32187,7.75104 18.82395,7.75104 18.82395,7.75104c0,0 11.07292,-2.21459 22.14583,-14.39479c11.07292,-12.18021 78.61769,-8.85833 78.61769,-8.85833c0,0 9.96563,1.10729 25.46771,-5.53646c15.50208,-6.64375 29.89686,1.10729 29.89686,1.10729c0,0 12.18021,4.42917 33.21875,-4.42917c21.03853,-8.85833 122.90935,-45.39894 132.87497,-64.2229c9.96562,-18.82395 45.16872,-22.979 45.16872,-22.979c18.00901,-1.86894 18.09074,0.55264 23.02573,1.22242c17.96914,-2.81751 20.38886,4.03992 20.38886,4.03992c0,0 33.21874,45.39895 48.72082,68.65207c13.02946,19.5442 168.3083,65.33019 168.3083,65.33019c3.32187,6.64375 -4.42917,33.21874 -4.42917,33.21874"/>
-  <path fill="none" fill-rule="evenodd" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="4" stroke-dashoffset="0" id="path14543" d="m-128.35669,118.34861c41.8998,6.02946 90.5883,2.93795 133.36829,-0.91429c89.2434,-8.03616 169.15547,-24.63224 263.30106,-43.45619c34.85543,-6.96917 70.79094,-15.31833 105.69248,-12.78061c24.46367,1.77878 51.59884,12.02761 72.8686,23.76793c46.22367,25.51418 160.08876,47.843 160.08876,47.843l4.93329,67.02678l-741.88525,7.75104l1.63277,-89.23766z"/>
-  <text font-weight="bold" stroke-linejoin="round" stroke-linecap="round" stroke-opacity="0" xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_1" y="66.85219" x="140.7989" stroke-width="3" stroke="#000000" fill="#00e63b">Ellipsoid</text>
-  <text font-weight="bold" stroke-linejoin="round" stroke-linecap="round" stroke-opacity="0" xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_2" y="115.33692" x="163.22309" stroke-width="3" stroke="#000000" fill="#ffffff">Geoid</text>
-  <path fill="none" fill-rule="evenodd" stroke="#00e63b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="4" stroke-dashoffset="0" id="path2760" d="m-129.56881,129.2094c126.0192,-36.10494 259.09964,-55.44339 396.66935,-55.44339c116.23621,0 229.26751,13.80571 337.54255,39.86575"/>
+  <path d="m-128.35669,118.74255c41.8998,6.02946 90.5883,2.93795 133.36829,-0.91429c89.2434,-8.03616 169.15547,-24.63224 263.30106,-43.45619c34.85543,-6.96917 70.79094,-15.31833 105.69248,-12.78061c24.46367,1.77878 51.59884,12.02761 72.8686,23.76793c46.22367,25.51418 160.08876,47.843 160.08876,47.843l4.93329,67.02678l-741.88525,7.75104l1.63277,-89.23766z" id="path2765" stroke-dashoffset="0" stroke-miterlimit="4" stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#ffffff" fill-rule="evenodd" fill="url(#linearGradient10995)"/>
+  <path d="m-139.95509,196.90728l2.21459,-93.01248c0,0 32.11145,3.32187 48.72082,22.14583c16.60937,18.82395 34.32603,12.1802 34.32603,12.1802c0,0 16.60937,-4.42916 19.93125,3.32188c3.32187,7.75104 18.82395,7.75104 18.82395,7.75104c0,0 11.07292,-2.21459 22.14583,-14.39479c11.07292,-12.18021 78.61769,-8.85833 78.61769,-8.85833c0,0 9.96563,1.10729 25.46771,-5.53646c15.50208,-6.64375 29.89686,1.10729 29.89686,1.10729c0,0 12.18021,4.42917 33.21875,-4.42917c21.03853,-8.85833 122.90935,-45.39894 132.87497,-64.2229c9.96562,-18.82395 45.16872,-22.979 45.16872,-22.979c18.00901,-1.86894 18.09074,0.55264 23.02573,1.22242c17.96914,-2.81751 20.38886,4.03992 20.38886,4.03992c0,0 33.21874,45.39895 48.72082,68.65207c13.02946,19.5442 168.3083,65.33019 168.3083,65.33019c3.32187,6.64375 -4.42917,33.21874 -4.42917,33.21874" id="path2785" stroke-dashoffset="0" stroke-miterlimit="4" marker-end="none" marker-mid="none" marker-start="none" stroke-width="0" stroke="#000000" fill-rule="nonzero" fill="#845335"/>
+  <path d="m-128.35669,118.34861c41.8998,6.02946 90.5883,2.93795 133.36829,-0.91429c89.2434,-8.03616 169.15547,-24.63224 263.30106,-43.45619c34.85543,-6.96917 70.79094,-15.31833 105.69248,-12.78061c24.46367,1.77878 51.59884,12.02761 72.8686,23.76793c46.22367,25.51418 160.08876,47.843 160.08876,47.843l4.93329,67.02678l-741.88525,7.75104l1.63277,-89.23766z" id="path14543" stroke-dashoffset="0" stroke-miterlimit="4" stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#ffffff" fill-rule="evenodd" fill="none"/>
+  <text fill="#00e63b" stroke-width="3" x="139.7989" y="67.35219" id="svg_1" font-size="24" font-family="Helvetica, Arial, sans-serif" text-anchor="start" xml:space="preserve" stroke-linecap="round" stroke-linejoin="round" font-weight="bold">Ellipsoid</text>
+  <path d="m-128.56881,129.2094c126.0192,-36.10494 259.09964,-55.44339 396.66935,-55.44339c116.23621,0 229.26751,13.80571 337.54255,39.86575" id="path2760" stroke-dashoffset="0" stroke-miterlimit="4" stroke-linejoin="round" stroke-linecap="round" stroke-width="3" stroke="#00e63b" fill-rule="evenodd" fill="none"/>
+  <text fill="#ffffff" stroke="#1e1e1e" stroke-width="3" x="163.22312" y="116.33692" id="svg_3" font-size="24" font-family="Helvetica, Arial, sans-serif" text-anchor="start" xml:space="preserve" stroke-linecap="round" stroke-linejoin="round" font-weight="bold">Geoid</text>
+  <text fill="#ffffff" x="163.22309" y="116.33692" id="svg_2" font-size="24" font-family="Helvetica, Arial, sans-serif" text-anchor="start" xml:space="preserve" stroke-linecap="round" stroke-linejoin="round" font-weight="bold">Geoid</text>
  </g>
 </svg>

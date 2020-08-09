@@ -1,12 +1,13 @@
 body {
+    font-size: 1.2em;
     line-height: 1.4;
     background: #1e1e1e;
     color: #eeeeee;
-    font-family: serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 a {
-    color: mediumpurple;
+    color: #f9cb9c;
 }
 
 .max-width {
@@ -24,8 +25,7 @@ a {
 #title {margin: 0;}
 
 h2 {
-    font-size: 1.5em;
-    font-family: sans-serif;
+    font-size: 1.7em;
     margin-top: 1.5em;
 }
 h2 a {
@@ -38,18 +38,18 @@ h2 a:hover {text-decoration: underline;}
 .bold {font-weight: bold;}
 .italic {font-style: italic}
 .mono {
-    font-family: monospace;
+    font-family: 'Courier New', Courier, monospace;
     white-space: nowrap;
 }
 
 .part1, .part2, .part3 {
     display: inline-block;
     font-weight: bold;
-    border-radius: 0.5em;
+    border-radius: 0.3em;
 }
 .part1 {
-    background-color: #7f6000;
-    color: #fff2cc;
+    background-color: #491c75;
+    color: #d9d2e9;
 }
 .part3 {
     background-color: #274e13;
@@ -74,3 +74,7 @@ ul {padding-left: 1em;}
 li {padding-bottom: 0.5em;}
 p.solutions {margin-bottom: 0;}
 ul.solutions {margin-top: 0.5em;}
+
+img {
+    border: 2px solid #4e4e4e;
+}
