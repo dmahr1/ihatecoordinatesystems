@@ -1,5 +1,12 @@
-* {
+body {
     line-height: 1.4;
+    background: #1e1e1e;
+    color: #eeeeee;
+    font-family: serif;
+}
+
+a {
+    color: mediumpurple;
 }
 
 .max-width {
@@ -7,28 +14,33 @@
     margin: auto;
 }
 
-#header {
-    background-color: lightgray;
+#header, #footer {
+    background-color: #4e4e4e;
     padding: 1em;
     border-radius: 0.5em;
 }
+#footer {margin-top: 2em;}
 
-h1 {margin: 0;}
+#title {margin: 0;}
 
 h2 {
     font-size: 1.5em;
+    font-family: sans-serif;
     margin-top: 1.5em;
 }
 h2 a {
     text-decoration: none;
-    color: black;
+    color: white;
 }
-h2 a:hover {
-    text-decoration: underline;
-}
+h2 a:hover {text-decoration: underline;}
 
 .center {text-align: center;}
 .bold {font-weight: bold;}
+.italic {font-style: italic}
+.mono {
+    font-family: monospace;
+    white-space: nowrap;
+}
 
 .part1, .part2, .part3 {
     display: inline-block;
@@ -36,16 +48,16 @@ h2 a:hover {
     border-radius: 0.5em;
 }
 .part1 {
-    color: #7f6000;
-    background-color: #fff2cc;
+    background-color: #7f6000;
+    color: #fff2cc;
 }
 .part3 {
-    color: #274e13;
-    background-color: #d9ead3;
+    background-color: #274e13;
+    color: #d9ead3;
 }
 .part2 {
-    color: #1c4587;
-    background-color: #c9daf8;
+    background-color: #1c4587;
+    color: #c9daf8;
 }
 
 .partlist .part1,.partlist .part2,.partlist .part3 {
@@ -56,17 +68,9 @@ h2 a:hover {
     padding-left: 0.5em;
 }
 
-p {
-    margin: 0.5em 0 0.5em 0;
-}
+p {margin: 0.5em 0 0.5em 0;}
 
-ul {
-    padding-left: 1em;
-}
-
-li {
-    padding-bottom: 0.5em;
-}
-
+ul {padding-left: 1em;}
+li {padding-bottom: 0.5em;}
 p.solutions {margin-bottom: 0;}
 ul.solutions {margin-top: 0.5em;}

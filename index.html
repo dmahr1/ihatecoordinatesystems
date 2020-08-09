@@ -10,21 +10,22 @@
 <body>
     <div class="max-width">
         <div id="header">
-            <h1 id="title" class="center">I Hate Coordinate Systems!</h1>
+            <h2 id="title" class="center"><a href="#">🤬 I Hate Coordinate Systems! 🤬</a></h2>
             <p>
                 Coordinate reference systems (CRSs) are a pain. Most geospatial professionals know enough to get
-                by, but struggle when there is a problem. GIS textbooks that explain CRSs by building up from first
-                principles aren't helpful without knowing what the problem is.
+                by, but many struggle when there is a problem. GIS textbooks explain CRSs by building up from first
+                principles, but skimming those is not helpful without understanding what the current problem is.
             </p>
             <p>
-                This is a <span class="bold">problem-based guide</span class="bold"> of common CRS issues, their root
-                causes, and possible solutions.
+                This is a <span class="bold">problem-based guide</span class="bold"> of common CRS issues, root
+                causes, and solutions.
             </p>
         </div>
 
         <div id="mental-model">
             <h2><a href="#mental-model">3-Part Mental Model for Geospatial Datasets</a></h2>
-            <p>Any geospatial dataset has three parts:</p>
+            <p>Any geospatial dataset has three parts. Many common problems happen when one of these parts is missing or
+                out of sync.</p>
             <div class="partlist">
                 <p>
                     <span class="part1"><span class="bold">Attributes</span>: the meanings or labels of a data
@@ -54,8 +55,9 @@
                         latitude</span>
                 </p>
             </div>
-            <p>Many common problems happen when one of these parts is missing or out of sync. To help clarify, these
-                parts are highlighted in the same colors throughout this guide.</p>
+            <p>Geospatial processes like defining coordinate systems, projections, transformations, geocoding, reverse
+                geocoding, etc. can be thought of as modifications to one or more parts of this mental model. For
+                clarity, these parts are highlighted in these colors throughout this guide.</p>
         </div>
 
         <div id="null-island">
@@ -69,13 +71,15 @@
                     coordinate system</span> (GCS), then the point with <span class="part2">coordinates</span> (0, 0) is
                 where the equator crosses the prime meridian off the
                 coast of Africa in the Gulf of Guinea, humorously known as <a
-                    href="https://en.wikipedia.org/wiki/Null_Island">Null Island</a>. This can sometimes happen when
+                    href="https://en.wikipedia.org/wiki/Null_Island" target="_blank">Null Island</a>. This can sometimes
+                happen when
                 importing from Excel and empty rows are not trimmed off.
             </p>
             <p>
                 <span class="bold">Solution:</span> Remove the data points from your dataset whose <span
                     class="part2">coordinates</span> are null.
             </p>
+            <p>[Map showing location of null island with graticule]</p>
         </div>
 
         <div id="incorrectly-gcs">
@@ -83,7 +87,7 @@
                     the Earth!</a></h2>
             <p>
                 <span class="bold">
-                    Your dataset's <span class="part3">coordinate system</span> is wrongly defined as a
+                    Your dataset probably has its <span class="part3">coordinate system</span> wrongly defined as a
                     longitude/latitude geographic coordinate system (GCS).
                 </span>
                 This can happen if the <span class="part3">coordinate system</span> is missing altogether, in which case
@@ -93,10 +97,11 @@
                 it's off of the Earth.
             </p>
             <p>
-                <span class="bold">Solution:</span> Redefine the <span class="part3">coordinate system</span> (change
-                the <span class="part3">coordinate system</span> but not the <span class="part2">coordinates</span>)
+                <span class="bold">Solution:</span> <a href="#redefine">Redefine the coordinate system</a>, i.e. change
+                the <span class="part3">coordinate system</span> but not the <span class="part2">coordinates</span>,
                 from the GCS to the <a href="#correct-crs">correct coordinate system</a>.
             </p>
+            <p>[Map showing dataset bigger than Earth]</p>
         </div>
 
         <div id="wrong-crs">
@@ -112,9 +117,9 @@
                 of set in the "project" or "map document".
             </p>
             <p>
-                <span class="bold">Solution:</span> redefine the <span class="part3">coordinate system</span> from the
-                GCS to the <a href="#correct-crs">correct one</a> without modifying the <span
-                    class="part2">coordinates</span> themselves.
+                <span class="bold">Solution:</span> <a href="#redefine">Redefine the coordinate system</a>, i.e. change
+                the <span class="part3">coordinate system</span> but not the <span class="part2">coordinates</span>,
+                from the GCS to the <a href="#correct-crs">correct coordinate system</a>.
             </p>
         </div>
 
@@ -128,37 +133,39 @@
                 </span>
                 A data point's <span class="part1">attributes</span> gives context to where on the Earth it is located.
                 Most GIS software will display the minimum and maximum <span class="part2">coordinates</span> in the
-                layer's properties as "extent" or "bounding box". From these, you can do some
-                detective work to infer the proper <span class="part3">coordinate system</span>.
+                layer's properties as "extent" or "bounding box". From these, do some detective work on how to <a
+                    href="#redefine">redefine the coordinate system</a> i.e. change the <span class="part3">coordinate
+                    system</span> but not the <span class="part2">coordinates</span>.
             </p>
             <p class="solutions"><span class="bold">Solutions:</span></p>
             <ul class="solutions">
                 <li>
-                    If the <span class="part2">coordinates</span> have X-values from -180 to 180 and Y-values from -90
-                    to
-                    90, then you probably want a longitude,latitude geographic <span class="part3">coordinate
-                        system</span>
-                    like WGS84.
+                    If the <span class="part2">coordinates</span> have X-values between -180 and 180, and Y-values
+                    between -90 and 90, then you probably want to <a href="#redefine">redefine</a> to a
+                    longitude,latitude geographic <span class="part3">coordinate system</span> (GCS) like WGS84.
                 </li>
                 <li>
-                    If the <span class="part2">coordinates</span> have large absolute values and the wrong <span
-                        class="part3">coordinate system</span> is zoned (e.g. UTM, Gauss-Kruger, State Plane), try
-                    redefining to one of the neighboring zones. For example, if UTM Zone 19N is wrong, try UTM Zone 18N.
+                    If the <span class="part2">coordinates</span> have large absolute values and the current (wrong)
+                    <span class="part3">coordinate system</span> is zoned (e.g. UTM, Gauss-Krüger, State Plane), try
+                    <a href="#redefine">redefining</a> to one of the neighboring zones. For example, if UTM Zone 19N is
+                    wrong, try UTM Zone 18N.
                 </li>
                 <li>
-                    If the <span class="part1">attributes</span> suggest the dataset is in the USA, try
-                    multiplying/dividing
-                    a data point's <span class="part2">coordinates</span> by 3.28084 to convert feet to meters/meters to
-                    feet and see if that places it in the proper location.
+                    [TRY USING REVERSE LOOKUP SCRIPT]
+                </li>
+                <li>
+                    If the <span class="part1">attributes</span> suggest the dataset is in the USA, then there might a
+                    problem converting to/from Freedom Units. Try multiplying/dividing a data point's <span
+                        class="part2">coordinates</span> by 3.28084 to convert feet to meters/meters to feet and see if
+                    that places it in the proper location.
                 </li>
                 <li>
                     If the minimum X/Y <span class="part2">coordinates</span> are both zero and the maxmimum X/Y <span
-                        class="part2">coordinates</span> are both positive then the dataset may have been exported from
+                        class="part2">coordinates</span> are both positive, then the dataset may have been exported from
                     non-geospatial software like Photoshop or Illustrator or Inkscape. This is especially likely if the
-                    data
-                    is flipped vertically since that software typically has the Y-axis increasing going down. You will
-                    need
-                    to manually georeference the dataset to use it.
+                    data is flipped vertically since those editors typically have the Y-axis increasing going down. You
+                    will need to manually georeference the dataset to use it, which changes both the <span
+                        class="part2">coordinates</span> and the <span class="part3">coordinate system</span>.
                 </li>
             </ul>
         </div>
@@ -167,25 +174,74 @@
             <h2><a href="#wrong-gcs">I hate coordinate systems! My geospatial data is slightly offset from where it
                     should be!</a></h2>
             <p>
-                <span class="bold">Your dataset probably has the wrong geographic <span class="part3">coordinate
-                        system</span></span>. This can happen even if you are using a projected <span
-                    class="part3">coordinate system</span>(PCS) like Universal Transverse Mercator (UTM) or State Plane
-                because all PCSs must have a GCS embedded within them. Different GCSs vary in their definition of the
-                shape of the Earth, meaning the same longitude/latitude <span class="part2">coordinates</span> in two
-                different GCSs refer to slightly different locations on the Earth, usually tens of meters apart.
+                <span class="bold">Your dataset probably has the wrong <span class="part3">geographic coordinate
+                        system</span></span>. This can happen even if you are using a projected coordinate system (PCS)
+                like Universal Transverse Mercator (UTM) or State Plane because all PCSs must have a GCS embedded within
+                them. Different GCSs vary in their definition of the shape of the Earth, meaning the same
+                longitude/latitude <span class="part2">coordinates</span> in two different GCSs refer to slightly
+                different locations on the Earth, usually tens of meters apart. The best approach is to <a
+                    href="#redefine">redefine the coordinate system</a> i.e. change the <span class="part3">coordinate
+                    system</span> but not the <span class="part2">coordinates</span>.
+            </p>
+            <p>[Map showing datum-related offset in area with dense roads]</p>
+            <p class="solutions"><span class="bold">Solutions:</span></p>
+            <ul class="solutions">
+                <li>Try redefining to the WGS84 GCS.</li>
+                <li>If your dataset was collected with GPS, try redefining to WGS84.</li>
+                <li>If your dataset was collected with GLONASS, try redefining to PZ-90.</li>
+                <li>If your dataset was collected with Galileo, try redefining to ITRF.</li>
+                <li>If your dataset is in the USA, try redefining to NAD27, NAD83, or WGS84.</li>
+                <li>If your dataset is in Europe, try redefining to ED50, ETRS89, or WGS84.</li>
+                <li>If your dataset is in Australia, try redefining to GDA94 or GDA2020.</li>
+                <li>If your dataset is in China and/or collected with BeiDou, <a
+                        href="https://en.wikipedia.org/wiki/Restrictions_on_geographic_data_in_China#Coordinate_systems"
+                        target="_blank">good
+                        luck</a>.</li>
+            </ul>
+        </div>
+
+        <div id="redefine">
+            <h2><a href="#redefine">I hate coordinate systems! How do I redefine a dataset's coordinate system
+                    anyway?</a></h2>
+            <p>
+                <span class="bold">
+                    It depends on your software.
+                </span>
+                Redefining means the metadata about the <span class="part3">coordinate system</span> is modified but the
+                <span class="part2">coordinates</span> are not. This contrasts with reprojections and transformations,
+                which modify both the <span class="part3">coordinate system</span> and the <span
+                    class="part2">coordinates</span>.
             </p>
             <p class="solutions"><span class="bold">Solutions:</span></p>
             <ul class="solutions">
-                <li>Try switching to the WGS84 GCS.</li>
-                <li>If your dataset was collected with GPS, you should be using WGS84.</li>
-                <li>If your dataset was collected with GLONASS, you should be using PZ-90.</li>
-                <li>If your dataset was collected with Galileo, you should be using ITRF.</li>
-                <li>If your dataset is in the USA, try switching between NAD27, NAD83, and WGS84.</li>
-                <li>If your dataset is in Europe, try switching between ED50, ETRS89, and WGS84.</li>
-                <li>If your dataset is in Australia, try switching between GDA94 and GDA2020.</li>
-                <li>If your dataset is in China and/or collected with BeiDou, <a
-                        href="https://en.wikipedia.org/wiki/Restrictions_on_geographic_data_in_China#Coordinate_systems">good
-                        luck</a>.</li>
+                <li>In ArcGIS Pro, use the <a
+                        href="https://pro.arcgis.com/en/pro-app/tool-reference/data-management/define-projection.htm"
+                        target="_blank">Define
+                        Projection tool</a>, <span class="italic">not</span> the Project tool.</li>
+                <li>In ArcMap, use the <a
+                        href="https://desktop.arcgis.com/en/arcmap/latest/tools/data-management-toolbox/define-projection.htm"
+                        target="_blank">Define
+                        Projection tool</a>, <span class="italic">not</span> the Project tool.</li>
+                <li>In QGIS, for vector data, use the <a
+                        href="https://docs.qgis.org/latest/en/docs/user_manual/processing_algs/qgis/vectorgeneral.html#assign-projection"
+                        target="_blank">Assign
+                        Projection tool</a> in the Vector General toolset, <span class="italic">not</span> the
+                    Reproject Layer tool.</li>
+                <li>In QGIS, for raster data, use the <a
+                        href="https://docs.qgis.org/latest/en/docs/user_manual/processing_algs/gdal/rasterprojections.html#assign-projection"
+                        target="_blank">Assign
+                        Projection</a> tool in the "GDAL" toolset, <span class="italic">not</span> the Warp (Reproject)
+                    tool.</li>
+                <li>From the command line, for vector data, use <a
+                        href="https://gdal.org/programs/ogr2ogr.html#cmdoption-ogr2ogr-a_srs" target="_blank"><span
+                            class="mono">ogr2ogr</span> with the <span class="mono">-a_srs</span>
+                        parameter</a>, <span class="italic">not</span> the <span class="mono">-t_srs</span> parameter.
+                </li>
+                <li>From the command line, for raster data, use <a
+                        href="https://gdal.org/programs/gdal_edit.html#cmdoption-a_srs" target="_blank"><span
+                            class="mono">gdal_edit.py</span> with the <span class="mono">-a_srs</span>
+                        parameter</a>.
+                </li>
             </ul>
         </div>
 
@@ -198,24 +254,29 @@
                 </span> Most GIS software naively calculates distances, areas, and volumes using Euclidean math in
                 the dataset's or data frame's <span class="part3">coordinate system</span>, regardless of whether it is
                 equidistant. Depending on the amount of distortion associated with the projection, this can lead to
-                (wildly) incorrect measurements without you knowing. In the common case of the Mercator projection,
-                distances are enlarged by about <span style="white-space:nowrap">𝟏 ÷
-                    𝐜𝐨𝐬(𝐥𝐚𝐭)</span>.
+                (wildly) incorrect measurements without you realizing. In the common case of the Mercator projection,
+                distances are enlarged by about <span class="mono">1/cos(lat)</span>.
             </p>
             <p class="solutions"><span class="bold">Solutions:</span></p>
             <ul class="solutions">
                 <li>Reproject your dataset (changing both the <span class="part2">coordinates</span> and <span
                         class="part3">coordinate system</span>) to an appropriate "local" <span class="part3">coordinate
                         system</span>. A local coordinate system is tuned to offer very accurate Euclidean measurements
-                    for a region of the Earth. Examples include UTM, Gauss-Kruger, State Plane, and equidistant
-                    national grids like the Albers Equal Area Conic Projection in the USA.</li>
+                    for a constrained region of the Earth. Examples include UTM, Gauss-Krüger, State Plane, and
+                    equidistant national grids like the Albers Equal Area Conic Projection in the USA.</li>
                 <li>Perform geodesic measurements. This unprojects the <span class="part2">coordinates</span> to
                     longitude/latitude (if in a PCS) and then calculates precise distance
                     along the GCS's ellipsoid. Each calculation is much slower than the Euclidean version, and the
                     improvement in accuracy is marginal versus a local <span class="part3">coordinate system</span> (the
-                    previous solution) unless you require sub-centimeter accuracy. This can be done in ArcGIS, as well
-                    as with open-source libraries like <a
-                        href="https://geographiclib.sourceforge.io/">GeographicLib</a>.
+                    previous solution) unless you require sub-centimeter accuracy. This is done by default in <a
+                        href="https://docs.qgis.org/latest/en/docs/user_manual/introduction/general_tools.html#measuring"
+                        target="_blank">QGIS</a>, can be enabled in <a
+                        href="https://pro.arcgis.com/en/pro-app/help/mapping/navigation/measure.htm"
+                        target="_blank">ArcGIS Pro</a> and <a
+                        href="https://desktop.arcgis.com/en/arcmap/latest/map/working-with-layers/measuring-distances-and-areas.htm"
+                        target="_blank">ArcMap</a>,
+                    and can be performed programmatically with open-source libraries like <a
+                        href="https://geographiclib.sourceforge.io/" target="_blank">GeographicLib</a>.
                 </li>
             </ul>
         </div>
@@ -234,13 +295,13 @@
                 ellipsoidal height to sea level (aka orthometric height), but many do not.
             </p>
             <p>
-                <span class="bold">Solution:</span> Use a tool like <a href="https://vdatum.noaa.gov/">VDatum</a> to
-                convert between ellipsoidal and
-                orthometric (above sea level) heights. For a reasonably small dataset, a constant offset can be applied
-                to all coordinates.
+                <span class="bold">Solution:</span> Use a tool like <a href="https://vdatum.noaa.gov/"
+                    target="_blank">VDatum</a> to convert between ellipsoidal and orthometric (above sea level) heights.
+                For a reasonably small dataset, a constant offset can be applied to all Z-coordinates.
             </p>
         </div>
 
+        <!--
         <div id="desc">
             <h2><a href="#desc">I hate coordinate systems! [PROBLEM]</a></h2>
             <p>
@@ -258,11 +319,13 @@
                 <li>SOLUTIONS</li>
             </ul>
         </div>
+        -->
 
         <div id="footer">
             <footer>
-                <p class="copyright center">
-                    IHateCoordinateSystems maintained by <a href="https://github.com/dmahr1">dmahr1</a>
+                <p class="center">
+                    Made with ❤️ by <a href="https://github.com/dmahr1" target="_blank">dmahr1</a> at <a
+                        href="https://dronedeploy.com">DroneDeploy</a>.
                 </p>
             </footer>
         </div>
