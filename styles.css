@@ -1,6 +1,5 @@
 body {
-    font-size: 1.2em;
-    line-height: 1.4;
+    line-height: 1.5;
     background: #1e1e1e;
     color: #eeeeee;
     font-family: Arial, Helvetica, sans-serif;
@@ -20,7 +19,10 @@ a {
     padding: 1em;
     border-radius: 0.5em;
 }
-#footer {margin-top: 2em;}
+#footer {
+    margin-top: 2em;
+    font-size: 0.8em;
+}
 
 #title {margin: 0;}
 
@@ -44,7 +46,6 @@ h2 a:hover {text-decoration: underline;}
 
 .part1, .part2, .part3 {
     display: inline-block;
-    font-weight: bold;
     border-radius: 0.3em;
 }
 .part1 {
