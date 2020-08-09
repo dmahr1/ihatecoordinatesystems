@@ -79,7 +79,7 @@
                 <span class="bold">Solution:</span> Remove the data points from your dataset whose <span
                     class="part2">coordinates</span> are null.
             </p>
-            <p>[Map showing location of null island with graticule]</p>
+            <p style="background-color: red;">[Map showing location of null island with graticule]</p>
         </div>
 
         <div id="incorrectly-gcs">
@@ -93,7 +93,8 @@
                 This can happen if the <span class="part3">coordinate system</span> is missing altogether, in which case
                 GIS software often assumes a GCS without telling you. A GCS only ranges from -180° west to +180° east in
                 the horizontal axis and -90° south to +90 north in the vertical axis. If the <span
-                    class="part2">coordinates</span> in your dataset are out of this range then your data will look like
+                    class="part2">coordinates</span> in your dataset are out of this range then your dataset will look
+                like
                 it's off of the Earth.
             </p>
             <p>
@@ -101,11 +102,11 @@
                 the <span class="part3">coordinate system</span> but not the <span class="part2">coordinates</span>,
                 from the GCS to the <a href="#correct-crs">correct coordinate system</a>.
             </p>
-            <p>[Map showing dataset bigger than Earth]</p>
+            <p style="background-color: red;">[Map showing dataset bigger than Earth]</p>
         </div>
 
         <div id="wrong-crs">
-            <h2><a href="#wrong-crs">I hate coordinate systems! My geospatial data is not located where it should
+            <h2><a href="#wrong-crs">I hate coordinate systems! My geospatial dataset is not located where it should
                     be!</a>
             </h2>
             <p>
@@ -124,8 +125,8 @@
         </div>
 
         <div id="correct-crs">
-            <h2><a href="#correct-crs">I hate coordinate systems! I don't know what coordinate system my geospatial
-                    dataset is in!</a></h2>
+            <h2><a href="#correct-crs">I hate coordinate systems! What coordinate system should my dataset be in?</a>
+            </h2>
             <p>
                 <span class="bold">
                     Look at the two things you do know: the <span class="part1">attributes</span> and the <span
@@ -150,7 +151,7 @@
                     <a href="#redefine">redefining</a> to one of the neighboring zones. For example, if UTM Zone 19N is
                     wrong, try UTM Zone 18N.
                 </li>
-                <li>
+                <li style="background-color: red;">
                     [TRY USING REVERSE LOOKUP SCRIPT]
                 </li>
                 <li>
@@ -163,7 +164,8 @@
                     If the minimum X/Y <span class="part2">coordinates</span> are both zero and the maxmimum X/Y <span
                         class="part2">coordinates</span> are both positive, then the dataset may have been exported from
                     non-geospatial software like Photoshop or Illustrator or Inkscape. This is especially likely if the
-                    data is flipped vertically since those editors typically have the Y-axis increasing going down. You
+                    dataset is flipped vertically since those editors typically have the Y-axis increasing going down.
+                    You
                     will need to manually georeference the dataset to use it, which changes both the <span
                         class="part2">coordinates</span> and the <span class="part3">coordinate system</span>.
                 </li>
@@ -171,7 +173,7 @@
         </div>
 
         <div id="wrong-gcs">
-            <h2><a href="#wrong-gcs">I hate coordinate systems! My geospatial data is slightly offset from where it
+            <h2><a href="#wrong-gcs">I hate coordinate systems! My geospatial dataset is slightly offset from where it
                     should be!</a></h2>
             <p>
                 <span class="bold">Your dataset probably has the wrong <span class="part3">geographic coordinate
@@ -183,7 +185,7 @@
                     href="#redefine">redefine the coordinate system</a> i.e. change the <span class="part3">coordinate
                     system</span> but not the <span class="part2">coordinates</span>.
             </p>
-            <p>[Map showing datum-related offset in area with dense roads]</p>
+            <p style="background-color: red;">[Map showing datum-related offset in area with dense roads]</p>
             <p class="solutions"><span class="bold">Solutions:</span></p>
             <ul class="solutions">
                 <li>Try redefining to the WGS84 GCS.</li>
@@ -201,8 +203,7 @@
         </div>
 
         <div id="redefine">
-            <h2><a href="#redefine">I hate coordinate systems! How do I redefine a dataset's coordinate system
-                    anyway?</a></h2>
+            <h2><a href="#redefine">I hate coordinate systems! How do I redefine a dataset's coordinate system?</a></h2>
             <p>
                 <span class="bold">
                     It depends on your software.
@@ -222,22 +223,22 @@
                         href="https://desktop.arcgis.com/en/arcmap/latest/tools/data-management-toolbox/define-projection.htm"
                         target="_blank">Define
                         Projection tool</a>, <span class="italic">not</span> the Project tool.</li>
-                <li>In QGIS, for vector data, use the <a
+                <li>In QGIS, for vector datasets, use the <a
                         href="https://docs.qgis.org/latest/en/docs/user_manual/processing_algs/qgis/vectorgeneral.html#assign-projection"
                         target="_blank">Assign
                         Projection tool</a> in the Vector General toolset, <span class="italic">not</span> the
                     Reproject Layer tool.</li>
-                <li>In QGIS, for raster data, use the <a
+                <li>In QGIS, for raster datasets, use the <a
                         href="https://docs.qgis.org/latest/en/docs/user_manual/processing_algs/gdal/rasterprojections.html#assign-projection"
                         target="_blank">Assign
                         Projection</a> tool in the "GDAL" toolset, <span class="italic">not</span> the Warp (Reproject)
                     tool.</li>
-                <li>From the command line, for vector data, use <a
+                <li>From the command line, for vector datasets, use <a
                         href="https://gdal.org/programs/ogr2ogr.html#cmdoption-ogr2ogr-a_srs" target="_blank"><span
                             class="mono">ogr2ogr</span> with the <span class="mono">-a_srs</span>
                         parameter</a>, <span class="italic">not</span> the <span class="mono">-t_srs</span> parameter.
                 </li>
-                <li>From the command line, for raster data, use <a
+                <li>From the command line, for raster datasets, use <a
                         href="https://gdal.org/programs/gdal_edit.html#cmdoption-a_srs" target="_blank"><span
                             class="mono">gdal_edit.py</span> with the <span class="mono">-a_srs</span>
                         parameter</a>.
@@ -286,7 +287,7 @@
                     Z-values (heights, elevations) are off!</a></h2>
             <p>
                 <span class="bold">
-                    Your dataset is probably measuring height above the ellipsoid instead of above sea level, or
+                    Your dataset is probably measuring height above the ellipsoid instead of above sea level (geoid), or
                     vice-versa.
                 </span>
                 Sea level follows the geoid, a surface which is lumpy because of minute regional variations in gravity.
@@ -294,6 +295,7 @@
                 representation called the ellipsoid. Some GPS devices have a database that automatically converts
                 ellipsoidal height to sea level (aka orthometric height), but many do not.
             </p>
+            <img src="ellipsoid-vs-geoid.png" width="100%">
             <p>
                 <span class="bold">Solution:</span> Use a tool like <a href="https://vdatum.noaa.gov/"
                     target="_blank">VDatum</a> to convert between ellipsoidal and orthometric (above sea level) heights.
@@ -324,8 +326,12 @@
         <div id="footer">
             <footer>
                 <p class="center">
-                    Made with ❤️ by <a href="https://github.com/dmahr1" target="_blank">dmahr1</a> at <a
-                        href="https://dronedeploy.com">DroneDeploy</a>.
+                    © 2020, made with ❤️ by <a href="https://github.com/dmahr1" target="_blank">dmahr1</a> at <a
+                        href="https://www.dronedeploy.com" target="_blank">DroneDeploy</a> (we're hiring).
+                </p>
+                <p class="center">
+                    See a problem? <a href="https://github.com/dmahr1/ihatecoordinatesystems/issues" target="_blank">Let
+                        me know</a>.
                 </p>
             </footer>
         </div>
