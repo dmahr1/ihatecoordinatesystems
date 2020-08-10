@@ -2,8 +2,18 @@
 <html lang="en-US">
 
 <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2029009-3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-2029009-3');
+    </script>
     <meta charset='utf-8'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I Hate Coordinate Systems!</title>
+    <link rel="icon" href="favicon16.svg" sizes="16x16" />
+    <link rel="icon" href="favicon32.svg" sizes="32x32" />
     <link rel="stylesheet" type="text/css" media="screen" href="styles.css">
 </head>
 
@@ -12,8 +22,8 @@
         <div id="header">
             <h2 id="title" class="center"><a href="#">🤬 I Hate Coordinate Systems! 🤬</a></h2>
             <p>
-                Coordinate reference systems (CRSs) are a pain. Most geospatial professionals know enough to get
-                by when things are working, but if there's a problem it's hard to even know what to search for.
+                Coordinate reference systems (CRSs) are a thorn in the side of many geospatial professionals. It's easy
+                to get by when things are working, but if there's a problem it's hard to even know what to search for.
             </p>
             <p>
                 This is a <span class="bold">problem-based guide</span class="bold"> of common CRS issues, root
@@ -36,8 +46,7 @@
                 </p>
                 <p>
                     <span class="part3"><span class="bold">Coordinate (reference) system</span>: metadata
-                        describing the space itself: origin,
-                        units, etc.</span>
+                        describing the space itself: origin, axes, units, etc.</span>
                 </p>
             </div>
             <p>For example:</p>
@@ -63,13 +72,12 @@
                 <span class="bold">
                     Your dataset probably has some junk <span class="part2">coordinates</span>.
                 </span>
-                Many data formats store "null" as zeroes. If your software is assuming a <span class="part3">geographic
-                    coordinate system</span> (GCS), then the point with <span class="part2">coordinates</span> (0, 0) is
-                where the equator crosses the prime meridian off the
-                coast of Africa in the Gulf of Guinea, humorously known as <a
-                    href="https://en.wikipedia.org/wiki/Null_Island" target="_blank">Null Island</a>. This can sometimes
-                happen when
-                importing from Excel and empty rows are not trimmed off.
+                Many data formats store "null" as zeroes. If your software is assuming a longitude/latitude geographic
+                <span class="part3">coordinate system</span> (GCS), then the point with <span
+                    class="part2">coordinates</span> (0, 0) is where the equator crosses the prime meridian off the
+                coast of Africa (humorously known as <a href="https://en.wikipedia.org/wiki/Null_Island"
+                    target="_blank">Null Island</a>). This can sometimes happen when importing from Excel and empty rows
+                are not trimmed off.
             </p>
             <img src="null_island.png" width="100%">
             <p>
@@ -86,12 +94,10 @@
                     Your dataset probably has its <span class="part3">coordinate system</span> wrongly defined as a
                     longitude/latitude geographic coordinate system (GCS).
                 </span>
-                This can happen if the <span class="part3">coordinate system</span> is missing altogether, in which case
-                GIS software often assumes a GCS without telling you. A GCS only ranges from -180° west to +180° east in
-                the horizontal axis and -90° south to +90 north in the vertical axis. If the <span
-                    class="part2">coordinates</span> in your dataset are out of this range then your dataset will look
-                like
-                it's off of the Earth.
+                This can happen if the coordinate system is missing altogether, in which case GIS software often assumes
+                a GCS without telling you. A GCS only ranges from -180° west to +180° east in the X-axis and
+                -90° south to +90 north in the Y-axis. If the <span class="part2">coordinates</span> in your dataset are
+                out of this range then your dataset will look like it's off of the Earth.
             </p>
             <p>
                 <span class="bold">Solution:</span> <a href="#redefine">Redefine the coordinate system</a>, i.e. change
@@ -107,15 +113,14 @@
             <p>
                 <span class="bold">
                     Your dataset probably has the wrong <span class="part3">coordinate system</span>.
-                </span> This is the more general case of the previous problem. This can happen if the
-                <span class="part3">coordinate system</span> is missing altogether, in which case GIS software often
-                assumes that it is the same coordinate system as a previously loaded dataset, or the coordinate system
-                of set in the "project" or "map document".
+                </span> This is the more general case of the previous problem. This can happen if the coordinate system
+                is missing altogether, in which case GIS software often assumes that it is the same coordinate system as
+                a previously loaded dataset, or the coordinate system set in the "project" or "map document".
             </p>
             <p>
                 <span class="bold">Solution:</span> <a href="#redefine">Redefine the coordinate system</a>, i.e. change
                 the <span class="part3">coordinate system</span> but not the <span class="part2">coordinates</span>,
-                from the GCS to the <a href="#correct-crs">correct coordinate system</a>.
+                to the <a href="#correct-crs">correct coordinate system</a>.
             </p>
         </div>
 
@@ -129,9 +134,9 @@
                 </span>
                 A data point's <span class="part1">attributes</span> gives context to where on the Earth it is located.
                 Most GIS software will display the minimum and maximum <span class="part2">coordinates</span> in the
-                layer's properties as "extent" or "bounding box". From these, do some detective work on how to <a
-                    href="#redefine">redefine the coordinate system</a> i.e. change the <span class="part3">coordinate
-                    system</span> but not the <span class="part2">coordinates</span>.
+                layer's properties as "extent" or "bounding box". From these, do some detective work on the <span
+                    class="part3">coordinate system</span> to which you should <a href="#redefine">redefine</a> your
+                dataset.
             </p>
             <p class="solutions"><span class="bold">Solutions:</span></p>
             <ul class="solutions">
@@ -141,10 +146,10 @@
                     longitude,latitude geographic <span class="part3">coordinate system</span> (GCS) like WGS84.
                 </li>
                 <li>
-                    If the <span class="part2">coordinates</span> have large absolute values and the current (wrong)
-                    <span class="part3">coordinate system</span> is zoned (e.g. UTM, Gauss-Krüger, State Plane), try
-                    <a href="#redefine">redefining</a> to one of the neighboring zones. For example, if UTM Zone 19N is
-                    wrong, try UTM Zone 18N.
+                    If the <span class="part2">coordinates</span> have large absolute values, try <a
+                        href="#redefine">redefining</a> to a local <span class="part3">coordinate system</span> like
+                    UTM, Gauss-Krüger, State Plane, or a national grid. Also consider trying neighboring zones, e.g. if
+                    UTM Zone 19N is wrong, try UTM Zone 18N.
                 </li>
                 <li>
                     If the <span class="part1">attributes</span> suggest the dataset is in the USA, then there might a
@@ -157,8 +162,7 @@
                         class="part2">coordinates</span> are both positive, then the dataset may have been exported from
                     non-geospatial software like Photoshop or Illustrator or Inkscape. This is especially likely if the
                     dataset is flipped vertically since those editors typically have the Y-axis increasing going down.
-                    You
-                    will need to manually georeference the dataset to use it, which changes both the <span
+                    You will need to manually georeference the dataset to use it, which changes both the <span
                         class="part2">coordinates</span> and the <span class="part3">coordinate system</span>.
                 </li>
             </ul>
@@ -168,17 +172,17 @@
             <h2><a href="#wrong-gcs">I hate coordinate systems! My dataset is slightly offset from where it
                     should be!</a></h2>
             <p>
-                <span class="bold">Your dataset probably has the wrong <span class="part3">geographic coordinate
-                        system</span></span>. This can happen even if you are using a projected coordinate system (PCS)
-                like Universal Transverse Mercator (UTM) or State Plane because all PCSs must have a GCS embedded within
-                them. Different GCSs vary in their definition of the shape of the Earth, meaning the same
-                longitude/latitude <span class="part2">coordinates</span> in two different GCSs refer to slightly
-                different locations on the Earth, usually tens of meters apart. The best approach is to <a
-                    href="#redefine">redefine the coordinate system</a> i.e. change the <span class="part3">coordinate
-                    system</span> but not the <span class="part2">coordinates</span>.
+                <span class="bold">Your dataset probably has the wrong longitude/latitude geographic <span
+                        class="part3">coordinate system</span> (GCS)</span>. Different GCSs define slightly different
+                sizes and shapes of the Earth (their ellipsoids) as well as their positionining on the Earth (their
+                datums). As a result, the same longitude/latitude <span class="part2">coordinates</span> in two
+                different GCSs can appear offset, although typically within tens of meters of each other. This can
+                happen even if you are using a projected coordinate system (PCS) whose units are not degrees of
+                longitude/latitude since PCSs have a GCS embedded within them. <img src="wrong-gcs.png" width="100%">
+            <p class="solutions"><span class="bold">Solution:</span><a href="#redefine"> Redefine the coordinate
+                    system</a>, i.e. change the <span class="part3">coordinate system</span> but not the <span
+                    class="part2">coordinates</span>, to one of the following
             </p>
-            <img src="wrong-gcs.png" width="100%">
-            <p class="solutions"><span class="bold">Solutions:</span></p>
             <ul class="solutions">
                 <li>Try redefining to the WGS84 GCS.</li>
                 <li>If your dataset was collected with GPS, try redefining to WGS84.</li>
@@ -200,7 +204,8 @@
                 <span class="bold">
                     It depends on your software.
                 </span>
-                Redefining means the metadata about the <span class="part3">coordinate system</span> is modified but the
+                Remember, redefining means the metadata about the <span class="part3">coordinate system</span> is
+                modified but the
                 <span class="part2">coordinates</span> are not. This contrasts with reprojections and transformations,
                 which modify both the <span class="part3">coordinate system</span> and the <span
                     class="part2">coordinates</span>.
@@ -244,11 +249,12 @@
             <p>
                 <span class="bold">
                     Your dataset is probably in a non-equidistant <span class="part3">coordinate system</span>.
-                </span> Most GIS software naively calculates distances, areas, and volumes using Euclidean math in
-                the dataset's or data frame's <span class="part3">coordinate system</span>, regardless of whether it is
+                </span> Most GIS software stupidly calculates distances, areas, and volumes using Euclidean math in
+                the dataset's or data frame's <span class="part3">coordinate system</span>, <span
+                    class="italic">regardless</span> of whether it is
                 equidistant. Depending on the amount of distortion associated with the projection, this can lead to
                 (wildly) incorrect measurements without you realizing. In the common case of the Mercator projection,
-                distances are enlarged by about <span class="mono">1/cos(lat)</span>.
+                distances are enlarged by about <span class="mono">1/cos(latitude)</span>.
             </p>
             <p class="solutions"><span class="bold">Solutions:</span></p>
             <ul class="solutions">
@@ -284,8 +290,8 @@
                 </span>
                 Sea level follows the geoid, a surface which is lumpy because of minute regional variations in gravity.
                 GNSS systems like GPS do not measure the height above the geoid but rather the idealized mathematical
-                representation called the ellipsoid. Some GPS devices have a database that automatically converts
-                ellipsoidal height to sea level (aka orthometric height), but many do not.
+                representation called the ellipsoid. Some GPS devices automatically convert ellipsoidal height to height
+                above sea level (aka orthometric height aka geoidal height), but many do not.
             </p>
             <img src="ellipsoid-vs-geoid.png" width="100%">
             <p>
@@ -318,8 +324,9 @@
         <div id="footer">
             <footer>
                 <p class="center">
-                    © 2020, made with ❤️ by <a href="https://github.com/dmahr1" target="_blank">dmahr1</a> at <a
-                        href="https://www.dronedeploy.com" target="_blank">DroneDeploy</a> (we're hiring).
+                    © 2020, made with ❤️ by <a href="https://github.com/dmahr1" target="_blank">Dan Mahr</a> at <a
+                        href="https://www.dronedeploy.com" target="_blank">DroneDeploy</a>, inspired by
+                    <a href="https://ohshitgit.com" target="_blank">ohshitgit</a>.
                 </p>
                 <p class="center">
                     See a problem? <a href="https://github.com/dmahr1/ihatecoordinatesystems/issues" target="_blank">Let

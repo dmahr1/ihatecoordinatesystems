@@ -16,7 +16,7 @@ a {
 
 #header, #footer {
     background-color: #4e4e4e;
-    padding: 1em;
+    padding: 0.5em;
     border-radius: 0.5em;
 }
 #footer {
@@ -29,6 +29,7 @@ a {
 h2 {
     font-size: 1.7em;
     margin-top: 1.5em;
+    line-height: 1.2;
 }
 h2 a {
     text-decoration: none;
@@ -37,7 +38,11 @@ h2 a {
 h2 a:hover {text-decoration: underline;}
 
 .center {text-align: center;}
-.bold {font-weight: bold;}
+.bold {
+    font-weight: bold;
+    font-variant: italic;
+    font-size: 110%;
+}
 .italic {font-style: italic}
 .mono {
     font-family: 'Courier New', Courier, monospace;
