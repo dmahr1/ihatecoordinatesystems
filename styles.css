@@ -1,6 +1,6 @@
 body {
     line-height: 1.5;
-    background: #1e1e1e;
+    background: rgb(17%,17%,17%);
     color: #eeeeee;
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -15,7 +15,7 @@ a {
 }
 
 #header, #footer {
-    background-color: #4e4e4e;
+    background-color: rgb(35%,35%,35%);
     padding: 0.5em;
     border-radius: 0.5em;
 }
@@ -33,7 +33,7 @@ h2 {
 }
 h2 a {
     text-decoration: none;
-    color: white;
+    color: #ffffff;
 }
 h2 a:hover {text-decoration: underline;}
 
