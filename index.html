@@ -32,9 +32,9 @@
         </div>
 
         <div id="mental-model">
-            <h2><a href="#mental-model">3-Part Mental Model</a></h2>
-            <p>Any geospatial dataset has three parts. Many common problems happen when one of these parts is missing or
-                out of sync.</p>
+            <h2><a href="#mental-model">I hate coordinate systems! How do I wrap my head around these things?</a></h2>
+            <p><span class="bold">Apply this three-part mental model of geospatial datasets.</span> Many common problems
+                happen when one of these parts is missing or out of sync.</p>
             <div class="partlist">
                 <p>
                     <span class="part1"><span class="bold">Attributes</span>: the meanings or labels of a data
@@ -59,8 +59,8 @@
                     <span class="part2"><span class="bold">Coordinates</span>: (-77.0367, 38.8976)</span>
                 </p>
                 <p>
-                    <span class="part3"><span class="bold">Coordinate (reference) system</span>: WGS84 longitude,
-                        latitude</span>
+                    <span class="part3"><span class="bold">Coordinate (reference) system</span>: WGS84
+                        longitude,latitude</span>
                 </p>
             </div>
         </div>
@@ -135,8 +135,8 @@
                 A data point's <span class="part1">attributes</span> gives context to where on the Earth it is located.
                 Most GIS software will display the minimum and maximum <span class="part2">coordinates</span> in the
                 layer's properties as "extent" or "bounding box". From these, do some detective work on the <span
-                    class="part3">coordinate system</span> to which you should <a href="#redefine">redefine</a> your
-                dataset.
+                    class="part3">coordinate system</span> which you should use when <a href="#redefine">redefining</a>
+                your dataset.
             </p>
             <p class="solutions"><span class="bold">Solutions:</span></p>
             <ul class="solutions">
@@ -174,7 +174,7 @@
             <p>
                 <span class="bold">Your dataset probably has the wrong longitude/latitude geographic <span
                         class="part3">coordinate system</span> (GCS)</span>. Different GCSs define slightly different
-                sizes and shapes of the Earth (their ellipsoids) as well as their positionining on the Earth (their
+                sizes/shapes of the Earth (their ellipsoids) and different positionings on the Earth (their
                 datums). As a result, the same longitude/latitude <span class="part2">coordinates</span> in two
                 different GCSs can appear offset, although typically within tens of meters of each other. This can
                 happen even if you are using a projected coordinate system (PCS) whose units are not degrees of
@@ -264,18 +264,17 @@
                     for a constrained region of the Earth. Examples include UTM, Gauss-Krüger, State Plane, and
                     equidistant national grids like the Albers Equal Area Conic Projection in the USA.</li>
                 <li>Perform geodesic measurements. This unprojects the <span class="part2">coordinates</span> to
-                    longitude/latitude (if in a PCS) and then calculates precise distance
-                    along the GCS's ellipsoid. Each calculation is much slower than the Euclidean version, and the
-                    improvement in accuracy is marginal versus a local <span class="part3">coordinate system</span> (the
-                    previous solution) unless you require sub-centimeter accuracy. This is done by default in <a
+                    longitude/latitude (if projected) and then calculates precise distance along the GCS's ellipsoid.
+                    But beware: each calculation is slower than the Euclidean version, and the improvement in accuracy
+                    is marginal versus a local <span class="part3">coordinate </span> (the previous solution) unless you
+                    require sub-centimeter accuracy. This is done by default in <a
                         href="https://docs.qgis.org/latest/en/docs/user_manual/introduction/general_tools.html#measuring"
                         target="_blank">QGIS</a>, can be enabled in <a
                         href="https://pro.arcgis.com/en/pro-app/help/mapping/navigation/measure.htm"
                         target="_blank">ArcGIS Pro</a> and <a
                         href="https://desktop.arcgis.com/en/arcmap/latest/map/working-with-layers/measuring-distances-and-areas.htm"
-                        target="_blank">ArcMap</a>,
-                    and can be performed programmatically with open-source libraries like <a
-                        href="https://geographiclib.sourceforge.io/" target="_blank">GeographicLib</a>.
+                        target="_blank">ArcMap</a>, and can be performed programmatically with open-source libraries
+                    like <a href="https://geographiclib.sourceforge.io/" target="_blank">GeographicLib</a>.
                 </li>
             </ul>
         </div>
