@@ -42,6 +42,7 @@
                 <li><a href="#not-equidistant">My measurements are bigger or smaller than they should be!</a></li>
                 <li><a href="#ellipsoidal-vs-orthometric">My X- and Y-values are OK, but my Z-values (heights,
                         elevations) are off!</a></li>
+                <li><a href="#glossary">What do all these terms mean?</a></li>
             </ul>
         </div>
 
@@ -312,6 +313,71 @@
                     target="_blank">VDatum</a> to convert between ellipsoidal and orthometric (above sea level) heights.
                 For a reasonably small dataset, a constant offset can be applied to all Z-coordinates.
             </p>
+        </div>
+
+        <div id="glossary">
+            <h2><a href="#glossary">I hate coordinate systems! What do all these terms mean?</a></h2>
+            <p class="solutions"><span class="bold">Here's a glossary:</span></p>
+            <ul class="solutions">
+                <li><span class="bold">Attributes</span>:
+                    the meanings or labels of a data point</li>
+                <li><span class="bold">Coordinate (reference) system (CRS)</span>:
+                    metadata describing the space in which coordinates exist, e.g. origin, axes, units, etc.</li>
+                <li><span class="bold">Coordinates</span>:
+                    numbers describing a data point's position within a CRS.
+                </li>
+                <li><span class="bold">Datum</span>:
+                    a precise reference frame calculated from a collection of known reference points; one part of a GCS.
+                </li>
+                <li><span class="bold">Ellipsoid</span>:
+                    a mathematical approximation of the size and shape of the earth; one part of a GCS.
+                </li>
+                <li><span class="bold">Extent</span>:
+                    the minimum and maximum values of the coordinates.
+                </li>
+                <li><span class="bold">Geographic coordinate system (GCS)</span>:
+                    a coordinate system with angular longitude,latitude units in degrees; composed of a datum and an
+                    ellipsoid.
+                </li>
+                <li><span class="bold">Geoid</span>:
+                    an imaginary surface similar to sea level if landmasses were "cut away"; unlike the smooth
+                    ellipsoid, the geoid is lumpy due to regional variations in gravity.
+                </li>
+                <li><span class="bold">GNSS</span>:
+                    global navigation satellite system for precisely global positioning; the most common are GPS 🇺🇸,
+                    GLONASS 🇷🇺, BeiDou 🇨🇳, and Galileo 🇪🇺.
+                </li>
+                <li><span class="bold">Project</span>:
+                    the act of converting coordinates from a ellipsoidal longitude,latitude GCS to a planar x,y PCS
+                    using a projection.
+                </li>
+                <li><span class="bold">Projected coordinate system (PCS)</span>:
+                    a planar coordinate system with Euclidean x,y units (not angles); composed of a GCS and a
+                    projection.
+                </li>
+                <li><span class="bold">Projection</span>:
+                    an algorithm for converting angular longitude,latitude coordinates in a GCS to a plane on/near the
+                    Earth's surface, e.g. Mercator, Equidistant Conic, Stereographic, Dymaxion. Different zones (e.g.
+                    UTM) are the same fundamental projection with different parameters.
+                </li>
+                <li><span class="bold">Redefine projection</span>:
+                    the act of changing the coordinate system <span class="italic">without</span> changing the
+                    coordinates.
+                </li>
+                <li><span class="bold">Reproject</span>:
+                    the act of changing the coordinate system <span class="italic">and</span> changing the
+                    coordinates. Typically done by unprojecting from the PCS to the old GCS, transforming to new GCS (if
+                    different), and projecting to the new PCS.
+                </li>
+                <li><span class="bold">Transform</span>:
+                    the act of changing between two GCSs. There are often multiple transformation algorithms; the best
+                    choice depends on the location of your data within the GCS.
+                </li>
+                <li><span class="bold">Unproject</span>:
+                    the act of converting coordinates from a planar x,y PCS to an ellipsoidal longitude,latitude GCS;
+                    the inverse of project.
+                </li>
+            </ul>
         </div>
 
         <!--
