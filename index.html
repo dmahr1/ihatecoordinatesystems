@@ -40,8 +40,11 @@
                 <li><a href="#wrong-gcs">My dataset is slightly offset from where it should be!</a></li>
                 <li><a href="#redefine">How do I redefine a dataset's coordinate system?</a></li>
                 <li><a href="#not-equidistant">My measurements are bigger or smaller than they should be!</a></li>
+                <li><a href="#why-mercator">Why is Mercator used if it's so distorted?</a></li>
+                <li><a href="#why-project">Why don't we always use longitude/latitude?</a></li>
                 <li><a href="#ellipsoidal-vs-orthometric">My X- and Y-values are OK, but my Z-values (heights,
                         elevations) are off!</a></li>
+                <li><a href="#glossary">What do all these terms mean?</a></li>
             </ul>
         </div>
 
@@ -167,7 +170,7 @@
                 </li>
                 <li>
                     If the <span class="part1">attributes</span> suggest the dataset is in the USA, then there might a
-                    problem converting to/from Freedom Units. Try multiplying/dividing a data point's <span
+                    problem converting to/from 🇺🇸 Freedom Units 🇺🇸. Try multiplying/dividing a data point's <span
                         class="part2">coordinates</span> by 3.28084 to convert feet to meters/meters to feet and see if
                     that places it in the proper location.
                 </li>
@@ -199,13 +202,13 @@
             </p>
             <ul class="solutions">
                 <li>Try redefining to the WGS84 GCS.</li>
-                <li>If your dataset was collected with GPS, try redefining to WGS84.</li>
-                <li>If your dataset was collected with GLONASS, try redefining to PZ-90.</li>
-                <li>If your dataset was collected with Galileo, try redefining to ITRF.</li>
-                <li>If your dataset is in the USA, try redefining to NAD27, NAD83, or WGS84.</li>
-                <li>If your dataset is in Europe, try redefining to ED50, ETRS89, or WGS84.</li>
-                <li>If your dataset is in Australia, try redefining to GDA94 or GDA2020.</li>
-                <li>If your dataset is in China and/or collected with BeiDou, <a
+                <li>If your dataset was collected with GPS 🇺🇸, try redefining to WGS84.</li>
+                <li>If your dataset was collected with GLONASS 🇷🇺, try redefining to PZ-90.</li>
+                <li>If your dataset was collected with Galileo 🇪🇺, try redefining to ITRF.</li>
+                <li>If your dataset is in the USA 🇺🇸, try redefining to NAD27, NAD83, or WGS84.</li>
+                <li>If your dataset is in Europe 🇪🇺, try redefining to ED50, ETRS89, or WGS84.</li>
+                <li>If your dataset is in Australia 🇦🇺, try redefining to GDA94 or GDA2020.</li>
+                <li>If your dataset is in China 🇨🇳 and/or collected with BeiDou, <a
                         href="https://en.wikipedia.org/wiki/Restrictions_on_geographic_data_in_China#Coordinate_systems"
                         target="_blank">good
                         luck</a>.</li>
@@ -293,6 +296,82 @@
             </ul>
         </div>
 
+        <div id="why-mercator">
+            <h2><a href="#why-mercator">I hate coordinate systems! Why is Mercator ever used if it's so distorted?</a>
+            </h2>
+            <p>
+                <span class="bold">Mercator is the only <span class="italic">conformal</span> cylindrical map
+                    projection.</span> Cylindrical map projections mean the whole Earth fits into a rectangle,
+                which is very convenient for data processing algorithms that are used to working with rectangular
+                images. Conformal means that angles and shapes are always preserved: north is always up, squares are
+                always square, etc. Using a non-conformal projection would make things look stretched, squashed, and/or
+                rotated when zooming in.
+            </p>
+            <img src="mercator.jpg" width="100%" style="border: 0; display: block; opacity: 0.9;">
+            <table
+                style="width: 100%; text-align: center; border: 2px solid #4e4e4e;margin: 0; border-top: 0; padding: 0; border-spacing: 0;">
+                <colgroup>
+                    <col style="width: 33%">
+                    <col style="width: 34%">
+                    <col style="width: 33%">
+                </colgroup>
+                <tbody>
+                    <tr>
+                        <td><span class="bold">Mercator (cylindrical)</span></td>
+                        <td><span class="bold">Lambert Cylindrical</span></td>
+                        <td style="border-left: 2px solid #4e4e4e; border-right: 2px solid #4e4e4e"><span
+                                class="bold">Albers Conic</span></td>
+                    </tr>
+                    <tr>
+                        <td>✅ Shape</td>
+                        <td style="border-left: 2px solid #4e4e4e; border-right: 2px solid #4e4e4e">❌ Shape</td>
+                        <td>✅ Shape</td>
+                    </tr>
+                    <tr>
+                        <td>✅ Rotation</td>
+                        <td style="border-left: 2px solid #4e4e4e; border-right: 2px solid #4e4e4e">✅ Rotation</td>
+                        <td>❌ Rotation</td>
+                    </tr>
+                    <tr>
+                        <td>❌ Area</td>
+                        <td style="border-left: 2px solid #4e4e4e; border-right: 2px solid #4e4e4e">✅ Area</td>
+                        <td>✅ Area</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>
+                Mercator does enlarge <span class="italic">areas</span> farther from the equator, but at least this
+                distortion is the same horizontally and vertically. And it's trivial to calculate a <a
+                    href="https://en.wikipedia.org/wiki/Mercator_projection#Scale_factor" target="_blank">scale
+                    factor</a> to correct measurements. The only time the distortion is problematic is when viewing a
+                global-scale map with a range of different scale factors, but most maps are not global-scale and there
+                are plenty of better projections to use for this case.
+            </p>
+        </div>
+
+        <div id="why-project">
+            <h2><a href="#why-project">I hate coordinate systems! Why don't we always use longitude/latitude?</a></h2>
+            <p class="solutions">Good question. There are a bunch of reasons we use planar projected <span
+                    class="part3">coordinate systems</span> rather than just sticking with latitude,longitude geographic
+                <span class="part3">coordinate systems</span> all the time:</p>
+            <ul class="solutions">
+                <li><span class="bold">Planar measurements are ubiquitous.</span> Common GIS features like
+                    property boundaries, road centerlines, forests, lakes, etc. are all reckoned in
+                    Euclidean distances, areas, and volumes - not in terms of angles.</li>
+                <li><span class="bold">Planar measurements are easier to calculate.</span> Measuring distances on a
+                    plane with the Pythagorean theorem is easier than along a sphere with the <a
+                        href="https://en.wikipedia.org/wiki/Haversine_formula" target="_blank">Haversine formula</a> and
+                    <span class="italic">way</span> easier than along an ellipsoid with the <a
+                        href="https://en.wikipedia.org/wiki/Vincenty%27s_formulae" target="_blank">Vincenty's
+                        formulae</a>, to say nothing of areas or volumes.</li>
+                <li><span class="bold">Longitude was hard to figure out before GNSS.</span> Reliable means of
+                    determining longitude are <a href="https://en.wikipedia.org/wiki/History_of_longitude"
+                        target="_blank">only a couple hundred years old</a>, and GPS only a couple decades old. There
+                    is a lot of inertia in surveying and geodesy using Cartesian distances from fixed monuments.</li>
+            </ul>
+        </div>
+
         <div id="ellipsoidal-vs-orthometric">
             <h2><a href="#ellipsoidal-vs-orthometric">I hate coordinate systems! My X- and Y-values are OK, but my
                     Z-values (heights, elevations) are off!</a></h2>
@@ -308,10 +387,80 @@
             </p>
             <img src="ellipsoid-vs-geoid.png" width="100%">
             <p>
-                <span class="bold">Solution:</span> Use a tool like <a href="https://vdatum.noaa.gov/"
-                    target="_blank">VDatum</a> to convert between ellipsoidal and orthometric (above sea level) heights.
-                For a reasonably small dataset, a constant offset can be applied to all Z-coordinates.
+                <span class="bold">Solution:</span> Use <a href="https://proj.org/apps/cs2cs.html" target="_blank"><span
+                        class="mono">cs2cs</span> in PROJ</a>, or alternatively an older tool like <a
+                    href="https://vdatum.noaa.gov/" target="_blank">VDatum</a>, to convert between ellipsoidal and
+                orthometric (above sea level) heights. For a reasonably small dataset, a constant offset can be applied
+                to all Z-coordinates.
             </p>
+        </div>
+
+        <div id="glossary">
+            <h2><a href="#glossary">I hate coordinate systems! What do all these terms mean?</a></h2>
+            <p class="solutions"><span class="bold">Here's a glossary:</span></p>
+            <ul class="solutions">
+                <li><span class="part1"><span class="bold">Attributes</span>:
+                        the meanings or labels of a data point</li></span>
+                <li><span class="part3"><span class="bold">Coordinate (reference) system (CRS)</span>:
+                        metadata describing the space in which coordinates exist, e.g. origin, axes, units, etc.</span>
+                </li>
+                <li><span class="part2"><span class="bold">Coordinates</span>:
+                        numbers describing a data point's position within a CRS.</span>
+                </li>
+                <li><span class="bold">Datum</span>:
+                    a precise reference frame calculated from a collection of known reference points; one part of a GCS.
+                </li>
+                <li><span class="bold">Ellipsoid</span>:
+                    a mathematical approximation of the size and shape of the earth; one part of a GCS.
+                </li>
+                <li><span class="bold">Extent</span>:
+                    the minimum and maximum values of the <span class="part2">coordinates</span>.
+                </li>
+                <li><span class="bold">Geographic coordinate system (GCS)</span>:
+                    a <span class="part3">coordinate system</span> with angular longitude,latitude units in degrees;
+                    composed of a datum and an ellipsoid.
+                </li>
+                <li><span class="bold">Geoid</span>:
+                    an imaginary surface similar to sea level if landmasses were "cut away"; unlike the smooth
+                    ellipsoid, the geoid is lumpy due to regional variations in gravity.
+                </li>
+                <li><span class="bold">GNSS</span>:
+                    global navigation satellite system for precisely global positioning; the most common are GPS 🇺🇸,
+                    GLONASS 🇷🇺, BeiDou 🇨🇳, and Galileo 🇪🇺.
+                </li>
+                <li><span class="bold">Project</span>:
+                    the act of converting <span class="part2">coordinates</span> from a ellipsoidal longitude,latitude
+                    <span class="part3">GCS</span> to a planar x,y <span class="part3">PCS</span> using a projection.
+                </li>
+                <li><span class="bold">Projected <span class="part3">coordinate system</span> (PCS)</span>:
+                    a planar coordinate system with Euclidean x,y units (not angles); composed of a GCS and a
+                    projection.
+                </li>
+                <li><span class="bold">Projection</span>:
+                    an algorithm for converting angular longitude,latitude coordinates in a <span
+                        class="part3">GCS</span> to a plane (a <span class="part3">PCS</span>) on/near the Earth's
+                    surface, e.g. Mercator, Equidistant Conic, Stereographic, Dymaxion. Different zones (e.g. UTM) are
+                    the same fundamental projection with different parameters.
+                </li>
+                <li><span class="bold">Redefine projection</span>:
+                    the act of changing the <span class="part3">coordinate system</span> <span
+                        class="italic">without</span> changing the coordinates.
+                </li>
+                <li><span class="bold">Reproject</span>:
+                    the act of changing the <span class="part3">coordinate system</span> <span class="italic">and</span>
+                    changing the coordinates. Typically done by unprojecting from the PCS to the old GCS, transforming
+                    to new GCS (if different), and projecting to the new PCS.
+                </li>
+                <li><span class="bold">Transform</span>:
+                    the act of changing between two <span class="part3">GCSs</span>. There are often multiple
+                    transformation algorithms for a given pair of <span class="part3">GCSs</span>; the best choice
+                    depends on the location of your data within the GCS.
+                </li>
+                <li><span class="bold">Unproject</span>:
+                    the act of converting coordinates from a planar x,y <span class="part3">PCS</span> to an ellipsoidal
+                    longitude,latitude <span class="part3">GCS</span>; the inverse of project.
+                </li>
+            </ul>
         </div>
 
         <!--
