@@ -381,7 +381,7 @@
                     vice-versa.
                 </span>
                 Sea level follows the geoid, a surface which is lumpy because of minute regional variations in gravity.
-                GNSS systems like GPS do not measure the height above the geoid but rather the idealized mathematical
+                GNSS like GPS do not measure the height above the geoid but rather the idealized mathematical
                 representation called the ellipsoid. Some GPS devices automatically convert ellipsoidal height to height
                 above sea level (aka orthometric height aka geoidal height), but many do not.
             </p>
@@ -416,7 +416,7 @@
                 <li><span class="bold">Extent</span>:
                     the minimum and maximum values of the <span class="part2">coordinates</span>.
                 </li>
-                <li><span class="bold">Geographic coordinate system (GCS)</span>:
+                <li><span class="bold">Geographic <span class="part3">coordinate system</span> (GCS)</span>:
                     a <span class="part3">coordinate system</span> with angular longitude,latitude units in degrees;
                     composed of a datum and an ellipsoid.
                 </li>
@@ -433,23 +433,23 @@
                     <span class="part3">GCS</span> to a planar x,y <span class="part3">PCS</span> using a projection.
                 </li>
                 <li><span class="bold">Projected <span class="part3">coordinate system</span> (PCS)</span>:
-                    a planar coordinate system with Euclidean x,y units (not angles); composed of a GCS and a
-                    projection.
+                    a planar <span class="part3">coordinate system</span> with Euclidean x,y units (not angles);
+                    composed of a GCS and a projection.
                 </li>
                 <li><span class="bold">Projection</span>:
-                    an algorithm for converting angular longitude,latitude coordinates in a <span
-                        class="part3">GCS</span> to a plane (a <span class="part3">PCS</span>) on/near the Earth's
+                    an algorithm for converting angular longitude,latitude <span class="part2">coordinates</span> in a
+                    <span class="part3">GCS</span> to a plane (a <span class="part3">PCS</span>) on/near the Earth's
                     surface, e.g. Mercator, Equidistant Conic, Stereographic, Dymaxion. Different zones (e.g. UTM) are
                     the same fundamental projection with different parameters.
                 </li>
                 <li><span class="bold">Redefine projection</span>:
                     the act of changing the <span class="part3">coordinate system</span> <span
-                        class="italic">without</span> changing the coordinates.
+                        class="italic">without</span> changing the <span class="part2">coordinates</span>.
                 </li>
                 <li><span class="bold">Reproject</span>:
                     the act of changing the <span class="part3">coordinate system</span> <span class="italic">and</span>
-                    changing the coordinates. Typically done by unprojecting from the PCS to the old GCS, transforming
-                    to new GCS (if different), and projecting to the new PCS.
+                    changing the <span class="part2">coordinates</span>. Typically done by unprojecting from the PCS to
+                    the old GCS, transforming to new GCS (if different), and projecting to the new PCS.
                 </li>
                 <li><span class="bold">Transform</span>:
                     the act of changing between two <span class="part3">GCSs</span>. There are often multiple
@@ -457,8 +457,9 @@
                     depends on the location of your data within the GCS.
                 </li>
                 <li><span class="bold">Unproject</span>:
-                    the act of converting coordinates from a planar x,y <span class="part3">PCS</span> to an ellipsoidal
-                    longitude,latitude <span class="part3">GCS</span>; the inverse of project.
+                    the act of converting <span class="part2">coordinates</span> from a planar x,y <span
+                        class="part3">PCS</span> to an ellipsoidal longitude,latitude <span class="part3">GCS</span>;
+                    the inverse of project.
                 </li>
             </ul>
         </div>
