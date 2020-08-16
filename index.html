@@ -96,7 +96,7 @@
                     target="_blank">Null Island</a>). This can sometimes happen when importing from Excel and empty rows
                 are not trimmed off.
             </p>
-            <img src="null_island.png" width="100%">
+            <img src="images/null_island.png" width="100%">
             <p>
                 <span class="bold">Solution:</span> Remove the data points from your dataset whose <span
                     class="part2">coordinates</span> are null.
@@ -170,7 +170,8 @@
                 </li>
                 <li>
                     If the <span class="part1">attributes</span> suggest the dataset is in the USA, then there might a
-                    problem converting to/from 🇺🇸 Freedom Units 🇺🇸. Try multiplying/dividing a data point's <span
+                    problem converting to/from <img src="images/flag-usa.png" class="flag"> Freedom Units <img
+                        src="images/flag-usa.png" class="flag">. Try multiplying/dividing a data point's <span
                         class="part2">coordinates</span> by 3.28084 to convert feet to meters/meters to feet and see if
                     that places it in the proper location.
                 </li>
@@ -195,20 +196,28 @@
                 datums). As a result, the same longitude/latitude <span class="part2">coordinates</span> in two
                 different GCSs can appear offset, although typically within tens of meters of each other. This can
                 happen even if you are using a projected coordinate system (PCS) whose units are not degrees of
-                longitude/latitude since PCSs have a GCS embedded within them. <img src="wrong-gcs.png" width="100%">
+                longitude/latitude since PCSs have a GCS embedded within them. <img src="images/wrong-gcs.png"
+                    width="100%">
             <p class="solutions"><span class="bold">Solution:</span><a href="#redefine"> Redefine the coordinate
                     system</a>, i.e. change the <span class="part3">coordinate system</span> but not the <span
                     class="part2">coordinates</span>, to one of the following
             </p>
             <ul class="solutions">
                 <li>Try redefining to the WGS84 GCS.</li>
-                <li>If your dataset was collected with GPS 🇺🇸, try redefining to WGS84.</li>
-                <li>If your dataset was collected with GLONASS 🇷🇺, try redefining to PZ-90.</li>
-                <li>If your dataset was collected with Galileo 🇪🇺, try redefining to ITRF.</li>
-                <li>If your dataset is in the USA 🇺🇸, try redefining to NAD27, NAD83, or WGS84.</li>
-                <li>If your dataset is in Europe 🇪🇺, try redefining to ED50, ETRS89, or WGS84.</li>
-                <li>If your dataset is in Australia 🇦🇺, try redefining to GDA94 or GDA2020.</li>
-                <li>If your dataset is in China 🇨🇳 and/or collected with BeiDou, <a
+                <li>If your dataset was collected with GPS <img src="images/flag-usa.png" class="flag">, try redefining
+                    to WGS84.</li>
+                <li>If your dataset was collected with GLONASS <img src="images/flag-ru.png" class="flag">, try
+                    redefining to PZ-90.</li>
+                <li>If your dataset was collected with Galileo <img src="images/flag-eu.png" class="flag">, try
+                    redefining to ITRF.</li>
+                <li>If your dataset is in the USA <img src="images/flag-usa.png" class="flag">, try redefining to NAD27,
+                    NAD83, or WGS84.</li>
+                <li>If your dataset is in Europe <img src="images/flag-eu.png" class="flag">, try redefining to ED50,
+                    ETRS89, or WGS84.</li>
+                <li>If your dataset is in Australia <img src="images/flag-au.png" class="flag">, try redefining to GDA94
+                    or GDA2020.</li>
+                <li>If your dataset is in China <img src="images/flag-cn.png" class="flag"> and/or collected with
+                    BeiDou, <a
                         href="https://en.wikipedia.org/wiki/Restrictions_on_geographic_data_in_China#Coordinate_systems"
                         target="_blank">good
                         luck</a>.</li>
@@ -307,7 +316,7 @@
                 always square, etc. Using a non-conformal projection would make things look stretched, squashed, and/or
                 rotated when zooming in.
             </p>
-            <img src="mercator.jpg" width="100%" style="border: 0; display: block; opacity: 0.9;">
+            <img src="images/mercator.jpg" width="100%" style="border: 0; display: block; opacity: 0.9;">
             <table
                 style="width: 100%; text-align: center; border: 2px solid #4e4e4e;margin: 0; border-top: 0; padding: 0; border-spacing: 0;">
                 <colgroup>
@@ -385,7 +394,7 @@
                 representation called the ellipsoid. Some GPS devices automatically convert ellipsoidal height to height
                 above sea level (aka orthometric height aka geoidal height), but many do not.
             </p>
-            <img src="ellipsoid-vs-geoid.png" width="100%">
+            <img src="images/ellipsoid-vs-geoid.png" width="100%">
             <p>
                 <span class="bold">Solution:</span> Use <a href="https://proj.org/apps/cs2cs.html" target="_blank"><span
                         class="mono">cs2cs</span> in PROJ</a>, or alternatively an older tool like <a
@@ -425,8 +434,10 @@
                     ellipsoid, the geoid is lumpy due to regional variations in gravity.
                 </li>
                 <li><span class="bold">GNSS</span>:
-                    global navigation satellite system for precisely global positioning; the most common are GPS 🇺🇸,
-                    GLONASS 🇷🇺, BeiDou 🇨🇳, and Galileo 🇪🇺.
+                    global navigation satellite system for precisely global positioning; the most common are GPS <img
+                        src="images/flag-usa.png" class="flag">, GLONASS <img src="images/flag-ru.png" class="flag">,
+                    BeiDou <img src="images/flag-cn.png" class="flag">, and Galileo <img src="images/flag-eu.png"
+                        class="flag">.
                 </li>
                 <li><span class="bold">Project</span>:
                     the act of converting <span class="part2">coordinates</span> from a ellipsoidal longitude,latitude
