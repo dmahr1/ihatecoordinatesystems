@@ -85,6 +85,13 @@ img {
     border: 2px solid #4e4e4e;
 }
 
+.flag {
+    border: none;
+    object-fit: cover;
+    height: 1em;
+    width: 1.5em;
+}
+
 #contents li {
     list-style: none;
     text-indent: -1em;
