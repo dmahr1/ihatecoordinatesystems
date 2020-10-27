@@ -15,6 +15,36 @@
     <link rel="icon" href="favicon16.svg" sizes="16x16" />
     <link rel="icon" href="favicon32.svg" sizes="32x32" />
     <link rel="stylesheet" type="text/css" media="screen" href="styles.css">
+    <script>
+        function lookupProjections() {
+            document.getElementById("projectionLookupButton").disabled = true;
+            document.getElementById("projectionLoookupLoading").style.display = 'inherit';
+            var lng = document.getElementById("lookup_lng").value;
+            var lat = document.getElementById("lookup_lat").value;
+            var x = document.getElementById("lookup_x").value;
+            var y = document.getElementById("lookup_y").value;
+            var url = `https://us-east1-ihatecoordinatesystems.cloudfunctions.net/projection_lookup_1?lng=${lng}&lat=${lat}&x=${x}&y=${y}`;
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    var table = document.getElementById("projectionLookupResults");
+                    while (table.childElementCount > 1) {
+                        table.removeChild(table.lastChild);
+                    }
+                    data.projections.forEach(element => {
+                        var tr = document.createElement('tr');
+                        tr.innerHTML = '<td style="padding-right:0.5em;">' + element.projection + '</td>' +
+                            '<td style="padding-right:0.5em;">' + element.name + '</td>' +
+                            '<td style="text-align:right;">' + element.distance.toFixed(2) + '</td>';
+                        table.appendChild(tr);
+                    });
+                    table.style.display = 'inherit';
+                    document.getElementById("projectionLookupButton").disabled = false;
+                    document.getElementById("projectionLoookupLoading").style.display = 'none';
+                });
+            return false;
+        }
+    </script>
 </head>
 
 <body>
@@ -157,6 +187,55 @@
             </p>
             <p class="solutions"><span class="bold">Solutions:</span></p>
             <ul class="solutions">
+                <li>
+                    If you know the longitude,latitude where the dataset <span class="italic">should</span> be located
+                    to within a few kilometers, you can try doing a reverse lookup. This iterates over every
+                    well-defined <span class="part3">coordinate system</span>, projects the known longitude,latitude,
+                    measures the distance to the X,Y <span class="part2">coordinates</span>, and takes the best one. You
+                    can use this sample code, or just enter the coordinates in the form below:
+                </li>
+                <form onsubmit="return lookupProjections()" action="javascript:void(0);">
+                    <table style="padding: 0.5em;width=100%;font-size:90%;">
+                        <colgroup>
+                            <col span="1" style="width: 18%;">
+                            <col span="1" style="width: 20%;">
+                            <col span="1" style="width: 18%;">
+                            <col span="1" style="width: 20%;">
+                            <col span="1" style="width: 20%;">
+                        </colgroup>
+                        <tbody>
+                            <tr>
+                                <td style="text-align:right;"><label for="lookup_lng">Longitude:</label></td>
+                                <td><input style="width:90%;" type="number" step="any" id="lookup_lng"
+                                        name="lookup_lng"></td>
+                                <td style="text-align:right;"><label for="lookup_lat">Latitude:</label></td>
+                                <td><input style="width:90%;" type="number" step="any" id="lookup_lat"
+                                        name="lookup_lat"><br></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:right;"><label for="lookup_x">X-coordinate:</label></td>
+                                <td><input style="width:90%;" type="number" step="any" id="lookup_x" name="lookup_x">
+                                </td>
+                                <td style="text-align:right;"><label for="lookup_y">Y-coordinate:</label></td>
+                                <td><input style="width:90%;" type="number" step="any" id="lookup_y" name="lookup_y">
+                                </td>
+                                <td><input style="width:70%;" id="projectionLookupButton" type="submit" value="Submit">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+                <p id="projectionLoookupLoading" style="display:none;">
+                    <span class="bold italic">Searching for projections... (this can take up to 30 seconds)</span>
+                </p>
+                <table id="projectionLookupResults" style="display:none;padding:0.5em;font-size:80%;">
+                    <tr>
+                        <td><span class="bold">Code</span></td>
+                        <td><span class="bold">Name</span></td>
+                        <td style="text-align:right;"><span class="bold">Error (meters)</span></td>
+                    </tr>
+                </table>
                 <li>
                     If the <span class="part2">coordinates</span> have X-values between -180 and 180, and Y-values
                     between -90 and 90, then you probably want to <a href="#redefine">redefine</a> to a
@@ -327,9 +406,9 @@
                 <tbody>
                     <tr>
                         <td><span class="bold">Mercator (cylindrical)</span></td>
-                        <td><span class="bold">Lambert Cylindrical</span></td>
                         <td style="border-left: 2px solid #4e4e4e; border-right: 2px solid #4e4e4e"><span
-                                class="bold">Albers Conic</span></td>
+                                class="bold">Lambert Cylindrical</span></td>
+                        <td><span class="bold">Albers Conic</span></td>
                     </tr>
                     <tr>
                         <td>✅ Shape</td>
