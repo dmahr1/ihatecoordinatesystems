@@ -98,3 +98,8 @@ img {
     padding-bottom: 0.2em;
     padding-left: 1em;
 }
+
+input {
+    background-color: rgb(10%,10%,10%);
+    color: #eeeeee;
+}
