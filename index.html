@@ -16,21 +16,29 @@
     <link rel="icon" href="favicon32.svg" sizes="32x32" />
     <link rel="stylesheet" type="text/css" media="screen" href="styles.css">
     <script>
+
         function lookupProjections() {
-            document.getElementById("projectionLookupButton").disabled = true;
-            document.getElementById("projectionLoookupLoading").style.display = 'inherit';
-            document.getElementById("projectionLoookupLoadingText").innerHTML = "Searching for projections... (this can take up to 30 seconds)";
+
             var lng = document.getElementById("lookup_lng").value;
             var lat = document.getElementById("lookup_lat").value;
             var x = document.getElementById("lookup_x").value;
             var y = document.getElementById("lookup_y").value;
+
+            document.getElementById("projectionLoookupLoading").style.display = 'inherit';
+            if (![lng, lat, x, y].every((str) => { return !isNaN(str) && !isNaN(parseFloat(str)) })) {
+                document.getElementById("projectionLoookupLoadingText").innerHTML = "Please provide all four parameters.";
+                return false;
+            }
+
+            document.getElementById("projectionLookupButton").disabled = true;
+            document.getElementById("projectionLoookupLoadingText").innerHTML = "Searching for projections... (this can take up to 30 seconds)";
             var url = `https://us-east1-ihatecoordinatesystems.cloudfunctions.net/projection_lookup_1?lng=${lng}&lat=${lat}&x=${x}&y=${y}`;
             fetch(url)
                 .then(response => response.json())
                 .then(data => {
                     document.getElementById("projectionLookupButton").disabled = false;
 
-                    if (data.projections.length == 0) {
+                    if (data.error || data.projections.length == 0) {
                         document.getElementById("projectionLoookupLoadingText").innerHTML = "No results found!";
                         return;
                     }

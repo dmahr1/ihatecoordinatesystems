@@ -92,7 +92,10 @@ def handler(request):
         x = float(request.args['x'])
         y = float(request.args['y'])
     except:  # pylint: disable=bare-except
-        return "Required floating point query parameters: 'lng', 'lat', 'x', 'y'", 400
+        response = jsonify(dict(error="Required floating point query parameters: 'lng', 'lat', 'x', 'y'"))
+        response.headers['Access-Control-Allow-Origin'] = '*'
+        response.headers['Access-Control-Allow-Methods'] = 'GET'
+        return response, 400
 
     global global_projs  # pylint: disable=global-statement
     response_dicts = []
@@ -101,6 +104,6 @@ def handler(request):
         response_dicts.append({'projection': lookup, 'distance': distance, 'name': proj.crs.name})
 
     response = jsonify(dict(projections=response_dicts))
-    response.headers.set('Access-Control-Allow-Origin', '*')
-    response.headers.set('Access-Control-Allow-Methods', 'GET')
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    response.headers['Access-Control-Allow-Methods'] = 'GET'
     return response, 200
